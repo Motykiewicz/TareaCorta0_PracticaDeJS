@@ -1,90 +1,99 @@
 body{
-    background-color: coral;
+  background-color: coral;
+  font-family: system-ui, Arial, sans-serif;
+  margin: 0;
 }
-
 .intro{
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
-
+.panel{
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+button{
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+button:hover{ filter: brightness(1.05); }
 
 .tablero{
-    display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin: 50px auto;
-    border: 5px solid black;
-    width: 472px; 
-    height: 590px; 
-    background-color: #a89f91; 
-    padding: 12px;
-    border-radius: 12px;
-    box-sizing: border-box;
-    position: relative;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 30px auto 50px;
+  border: 5px solid black;
+  width: 472px; 
+  height: 590px; 
+  background-color: #a89f91; 
+  padding: 12px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .primera-fila{
-    grid-row: 1;
-    grid-column: 1 / span 4;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    background: #3a3530; 
-    color: #fff;
-    padding: 0;
-    border-radius: 8px 8px 0 0;
+  grid-row: 1;
+  grid-column: 1 / span 4;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  background: #3a3530; 
+  color: #fff;
+  padding: 0;
+  border-radius: 8px 8px 0 0;
 }
 
-.cuadro-primera-fila{
-    background-color: #4b4742;
-    color: #fff;
+.fila{ display: contents; }
+
+/* Unificamos estilos de todos los cuadros (incluida primera fila) */
+.cuadro, .cuadro-primera-fila{
+  background-color: #cdc1b4;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(80,60,40,0.12);
+  margin: 0;
+  transition: transform 0.08s ease, background 0.2s ease;
+  user-select: none;
 }
+.cuadro:active{ transform: scale(0.98); }
 
-.fila{
-    display: contents;
-}
-
-.cuadro{
-    background-color: lightblue;
-    width: 110px;
-    height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(80,60,40,0.12);
-    margin: 0;
-    transition: background 0.2s;
-}
-
-
+/* Modal: INICIA OCULTO */
 .cuadro-info{
-    position: fixed;
-    top : 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;   
-    align-items: center;
-    z-index: 1000;
-
+  position: fixed;
+  top : 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;                /* ← importante */
+  justify-content: center;   
+  align-items: center;
+  z-index: 1000;
 }
+.cuadro-info.abierto{ display: flex; }
 
 .contenido-info{
-    background: #fff;
-    padding: 32px 24px 24px 24px;
-    border-radius: 12px;
-    position: relative;
-    max-width: 400px;
-    width: 90vw;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  background: #fff;
+  padding: 32px 24px 24px 24px;
+  border-radius: 12px;
+  position: relative;
+  max-width: 420px;
+  width: 90vw;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
 }
-
 .cerrar-cuadro{
   position: absolute;
   top: 12px;
@@ -94,3 +103,17 @@ body{
   color: #333;
   cursor: pointer;
 }
+
+/* Colores por valor (puedes ajustar a tu gusto) */
+.tile-0   { background:#cdc1b4; color:#776e65; }
+.tile-2   { background:#eee4da; color:#776e65; }
+.tile-4   { background:#ede0c8; color:#776e65; }
+.tile-8   { background:#f2b179; color:#f9f6f2; }
+.tile-16  { background:#f59563; color:#f9f6f2; }
+.tile-32  { background:#f67c5f; color:#f9f6f2; }
+.tile-64  { background:#f65e3b; color:#f9f6f2; }
+.tile-128 { background:#edcf72; color:#f9f6f2; font-size:26px; }
+.tile-256 { background:#edcc61; color:#f9f6f2; font-size:26px; }
+.tile-512 { background:#edc850; color:#f9f6f2; font-size:24px; }
+.tile-1024{ background:#edc53f; color:#f9f6f2; font-size:22px; }
+.tile-2048{ background:#edc22e; color:#f9f6f2; font-size:20px; }
