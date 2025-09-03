@@ -24,7 +24,7 @@ body{
     position: relative;
 }
 
-.primerafila{
+.primera-fila{
     grid-row: 1;
     grid-column: 1 / span 4;
     display: grid;
@@ -58,4 +58,39 @@ body{
     box-shadow: 0 2px 8px rgba(80,60,40,0.12);
     margin: 0;
     transition: background 0.2s;
+}
+
+
+.cuadro-info{
+    position: fixed;
+    top : 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;   
+    align-items: center;
+    z-index: 1000;
+
+}
+
+.contenido-info{
+    background: #fff;
+    padding: 32px 24px 24px 24px;
+    border-radius: 12px;
+    position: relative;
+    max-width: 400px;
+    width: 90vw;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+.cerrar-cuadro{
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
 }

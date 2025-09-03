@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Juego 2048</title>
+    <title>2048 Tetris</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
 
   <body>
-    <div id="intro">
-      <h2>Bienvenidos a</h2>
-      <h1>2048</h1>
-      <p>Para poder jugar se debe usar las flechas del teclado para mover los cuadros</p>
-      <p>Combine los cuadros con el mismo número para sumar sus valores</p>
-      <p>El objetivo es llegar al cuadro numero con un numero 2048</p>
-    </div>
+    <header>
+      <h1>2048 Tetris</h1>
+      <!-- Boton en donde ensena las mecanicas del juego -->
+      <button id="info-btn">Información</button>
+      <div id="cuadro-info" class="cuadro-info">
+        <div class="contenido-info">
+          <span id="cerrar-cuadro" class="cerrar-cuadro">&times;</span>
+          <h2>Instrucciones del Juego</h2>
+          <p>Usa las flechas del teclado para mover los cuadros.</p>
+          <p>Combina los cuadros con el mismo número para sumar sus valores.</p>
+          <p>El objetivo es llegar al cuadro con el número 2048.</p>
+        </div>
+      </div>
+    </header>
 
+    <!-- Tablero del juego -->
     <div id="tablero" class="tablero">
       <div id="primera-fila" class="fila">
         <div class="cuadro-primera-fila" id="cuadro-0-0">-</div>
