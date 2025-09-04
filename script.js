@@ -12,7 +12,8 @@ document.getElementById("cerrar-cuadro").onclick = () => {
 // === 2048 tetris funcionamiento ===
 const ROWS = 5;
 const COLS = 4;
-const DROP_MS_START = 600;
+const DROP_MS_START = 1000;
+const DROP_MS_DELAY = 500; // para una pausa desde cuando cae el bloque hasta que empieza a caer uno nuevo 
 
 let board;           // Matriz 5x4 con valores numéricos
 let active = null;
@@ -117,12 +118,23 @@ function lockAndResolve(){
   // Después del lock: aplica “gravedad+fusion” hacia abajo, en cascada.
   settleFrom(r, c);
   render();
+
+  // Acelera caída cada 100 puntos para aumentar la dificultad
+  if (score > 0 && score % 100 === 0 && dropMs > 200) {
+    dropMs-=100;
+    startLoop();
+  }
+
   // Chequeo 2048
   if(board.flat().some(v => v === 2048)){
     setTimeout(() => alert("¡Ganaste! Has llegado a 2048 🎉"), 50);
   }
   // Spawnea siguiente
-  spawn();
+  stopLoop();
+  setTimeout(() => {
+    spawn();
+    startLoop();
+  }, DROP_MS_DELAY);
 }
 
 function settleFrom(sr, sc){
