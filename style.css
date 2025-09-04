@@ -29,8 +29,8 @@ button:hover{ filter: brightness(1.05); }
   gap: 12px;
   margin: 30px auto 50px;
   border: 5px solid black;
-  width: 472px; 
-  height: 590px; 
+  width: 515px; 
+  height: 635px; 
   background-color: #a89f91; 
   padding: 12px;
   border-radius: 12px;
@@ -52,13 +52,12 @@ button:hover{ filter: brightness(1.05); }
 
 .fila{ display: contents; }
 
-/* Unificamos estilos de todos los cuadros (incluida primera fila) */
-.cuadro, .cuadro-primera-fila{
-  background-color: #cdc1b4;
+.cuadro { /* cuadros normales */
+  background-color: #201201;  
   width: 110px;
   height: 110px;
   display: flex;
-  align-items: center;
+  align-items: center; 
   justify-content: center;
   font-size: 28px;
   font-weight: 800;
@@ -68,17 +67,24 @@ button:hover{ filter: brightness(1.05); }
   transition: transform 0.08s ease, background 0.2s ease;
   user-select: none;
 }
+
+/*  Estilos especiales para la primera fila */ 
+.cuadro-primera-fila{ 
+  background-color: #7b7670 !important;  
+  color: #fff
+}
+
 .cuadro:active{ transform: scale(0.98); }
 
 /* Modal: INICIA OCULTO */
 .cuadro-info{
   position: fixed;
-  top : 0;
+  top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;                /* ← importante */
+  display: none;                /* ← importante, con esto no aparece al inicio sino cuando se abra*/
   justify-content: center;   
   align-items: center;
   z-index: 1000;
@@ -104,7 +110,7 @@ button:hover{ filter: brightness(1.05); }
   cursor: pointer;
 }
 
-/* Colores por valor (puedes ajustar a tu gusto) */
+/* Colores de los cuadros, ahi podemos cambiarlos si hace falta */
 .tile-0   { background:#cdc1b4; color:#776e65; }
 .tile-2   { background:#eee4da; color:#776e65; }
 .tile-4   { background:#ede0c8; color:#776e65; }
