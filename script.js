@@ -48,7 +48,8 @@ function render(){
       // Texto
       el.textContent = v === 0 ? "" : v;
       // Clases de color
-      el.className = `cuadro ${r===0?'cuadro-primera-fila':''} tile-${v<=2048?v:2048}`.trim();
+      const primeraFilaVacia = (r === 0 && v === 0);
+      el.className = `cuadro ${primeraFilaVacia ? 'cuadro-primera-fila':''} tile-${v<=2048?v:2048}`.trim();
     }
   }
   scoreEl.textContent = String(score);
