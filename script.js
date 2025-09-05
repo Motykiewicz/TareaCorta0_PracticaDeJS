@@ -48,7 +48,7 @@ function render(){
     for(let c=0; c<COLS; c++){
       let v = board[r][c];
       const el = getEl(r,c);
-      // Si es la pieza activa, se “pinta” sobre el tablero
+      // Si es la pieza activa, se pinta sobre el tablero
       if(active && active.r === r && active.c === c){
         v = active.val;
       }
@@ -173,15 +173,38 @@ function settleFrom(sr, sc){
 
 function moveHoriz(dx){
   if(!active) return;
-  const nc = active.c + dx;
   const nr = active.r;
+  const nc = active.c + dx;
   if(!inBounds(nr, nc)) return;
-  // Puede moverse si la celda destino está vacía
+
+  // Movimiento normal si está vacío
   if(board[nr][nc] === 0){
     active.c = nc;
     render();
+    return;
   }
+
+  // Fusión horizontal en movimiento si el bloque de abajo tiene el mismo valor
+  if(board[nr][nc] === active.val){
+    const newVal = active.val * 2;
+
+    // "Consumimos" la ficha sólida lateral
+    board[nr][nc] = 0;
+
+    // Movemos la pieza activa a esa columna y actualizamos su valor
+    active.c = nc;
+    active.val = newVal;
+
+    // Sumamos al puntaje igual que en la fusión vertical
+    score += newVal;
+
+    render();
+    return;
+  }
+
+  // 3) Si está ocupado por otro valor distinto, no se mueve
 }
+
 
 function hardDrop(){
   if(!active) return;
