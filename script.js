@@ -3,10 +3,16 @@
 
 // === Utilidades DOM del modal ===
 document.getElementById("info-btn").onclick = () => {
-  document.getElementById("cuadro-info").classList.add("abierto");
+  const cuadro = document.getElementById("cuadro-info");
+  cuadro.style.display = "flex";
+  setTimeout(() => cuadro.classList.add("abierto"), 10);
+  if (!paused) pausegame();
 };
 document.getElementById("cerrar-cuadro").onclick = () => {
-  document.getElementById("cuadro-info").classList.remove("abierto");
+  const cuadro = document.getElementById("cuadro-info");
+  cuadro.classList.remove("abierto");
+  setTimeout(() => cuadro.style.display = "none", 300);
+  if (paused) pausegame();
 };
 
 // === 2048 tetris funcionamiento ===
@@ -212,6 +218,21 @@ function resetGame(){
   spawn();
   startLoop();
 }
+
+function pausegame(){
+  if(!paused){
+    stopLoop();
+    paused = true;
+    document.getElementById("pausa-btn").textContent = "Continuar";  
+  }
+  else{
+    startLoop();
+    paused = false;
+    document.getElementById("pausa-btn").textContent = "Pausa";  
+  }
+}
+let paused = false;
+document.getElementById("pausa-btn").addEventListener("click", pausegame);
 
 // Controles
 document.addEventListener("keydown", (e) => {

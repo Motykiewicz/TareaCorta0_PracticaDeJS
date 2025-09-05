@@ -83,13 +83,24 @@ button:hover{ filter: brightness(1.05); }
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: transparent;
   display: none;                /* ← importante, con esto no aparece al inicio sino cuando se abra*/
   justify-content: center;   
   align-items: center;
   z-index: 1000;
+
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  /*animation: fadeIn 0.3s forwards;  Animacion de entrada */
 }
-.cuadro-info.abierto{ display: flex; }
+.cuadro-info.abierto{ 
+  display: flex; 
+  opacity: 1;
+  transform: scale(1);
+}
+  
 
 .contenido-info{
   background: #fff;
